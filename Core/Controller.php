@@ -2,9 +2,6 @@
 
 namespace Core;
 
-use Models\CadastroUsuarios;
-use Models\Usuario;
-
 abstract class Controller
 {
 

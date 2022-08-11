@@ -3,7 +3,6 @@
 namespace Controller;
 
 use Core\Controller;
-use Models\Usuario;
 
 class HomeController extends Controller
 {
