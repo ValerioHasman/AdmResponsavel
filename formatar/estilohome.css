@@ -1,0 +1,31 @@
+table {
+  min-width: 400px;
+}
+
+td, th {
+  padding: 0.2rem;
+}
+
+thead th {
+  background-color: #ccc;
+}
+
+.pessoa td {
+  background-color: #ddd;
+}
+
+.filho td{
+  background-color: #eee;
+}
+
+.filho .nome{
+  padding-left: 1rem;
+}
+
+.adicionarFilho td {
+  text-align: center;
+}
+
+.dados {
+  float: left;
+}
