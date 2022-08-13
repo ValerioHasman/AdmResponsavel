@@ -12,12 +12,29 @@
 <br />
 <div style="display: inline-block;">
   <div class="dados">
-    <table>
+    <table id="tabela">
       <thead>
         <tr>
           <th colspan="2" scope="col">Pessas</th>
         </tr>
       </thead>
+      <tbody>
+        <tr class="pessoa">
+          <td>Marcos</td>
+          <td><button type="button">Remover</button></td>
+        </tr>
+        <tr class="filho">
+          <td class="nome">Pedro</td>
+          <td><button type="button">Remover filho</button></td>
+        </tr>
+        <tr class="filho">
+          <td class="nome">Pedro</td>
+          <td><button type="button">Remover filho</button></td>
+        </tr>
+        <tr class="adicionarFilho">
+          <td colspan="2" scope="col"><button type="button">Adicionar filho</button></td>
+        </tr>
+      </tbody>
       <tbody>
         <tr class="pessoa">
           <td>Marcos</td>
@@ -41,4 +58,3 @@
     <textarea id="json" cols="100" rows="40"></textarea>
   </div>
 </div>
-<br>
