@@ -33,15 +33,33 @@ function criaPessoa(nome){
       '<td><button type="button">Remover</button></td>' +
     '</tr>' +
     '<tr class="filho">' +
-      '<td class="nome">Pedro</td>' +
+      '<td class="nome">Plar</td>' +
       '<td><button type="button">Remover filho</button></td>' +
     '</tr>' +
     '<tr class="filho">' +
-      '<td class="nome">Pedro</td>' +
+      '<td class="nome">Exem</td>' +
       '<td><button type="button">Remover filho</button></td>' +
     '</tr>' +
     '<tr class="adicionarFilho">' +
-      '<td colspan="2" scope="col"><button type="button">Adicionar filho</button></td>' +
+      '<td colspan="2"><button type="button" onclick="adicionarFilho(\'' + nome + '\')">Adicionar filho</button></td>' +
     '</tr>' +
   '</tbody>';
+}
+
+function adicionarFilho(nome) {
+  const elementoNome = window.document.getElementById(nome);
+  const nomeFilho = window.prompt('Informe o nome', '');
+
+  if(nomeFilho != '' && nomeFilho != ' '){
+    const div = elementoNome.getElementsByClassName('adicionarFilho')[0];
+    div.insertAdjacentHTML('beforebegin',
+    '<tr class="filho">' +
+      '<td class="nome">' + nomeFilho + '</td>' +
+      '<td><button type="button">Remover filho</button></td>' +
+    '</tr>'
+  );
+  }
+
+  
+
 }
