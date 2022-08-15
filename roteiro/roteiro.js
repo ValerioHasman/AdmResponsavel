@@ -1,5 +1,5 @@
-const txtjson = document.getElementById('json');
-const tabela = document.getElementById('tabela');
+var txtjson = document.getElementById('json');
+var tabela = document.getElementById('tabela');
 
 fetch(document.baseURI + 'home/json',
   {
@@ -22,36 +22,42 @@ function criarTabela(data){
       '<th colspan="2" scope="col">Pessas</th>' +
     '</tr>' +
   '</thead>';
-  data.pessoas.map((pessoa) => (criaPessoa(pessoa.nome)));
+  data.pessoas.map((pessoa) => (criaPessoa(pessoa)));
 }
 
 function criaPessoa(nome){
   tabela.innerHTML +=
-  '<tbody id="' + nome + '">' +
+  '<tbody id="' + nome.nome + '">' +
     '<tr class="pessoa">' +
-      '<td>' + nome + '</td>' +
+      '<td>' + nome.nome + '</td>' +
       '<td><button type="button">Remover</button></td>' +
     '</tr>' +
-    '<tr class="filho">' +
-      '<td class="nome">Plar</td>' +
-      '<td><button type="button">Remover filho</button></td>' +
-    '</tr>' +
-    '<tr class="filho">' +
-      '<td class="nome">Exem</td>' +
-      '<td><button type="button">Remover filho</button></td>' +
-    '</tr>' +
+    criaFilhos(nome.filhos) +
     '<tr class="adicionarFilho">' +
-      '<td colspan="2"><button type="button" onclick="adicionarFilho(\'' + nome + '\')">Adicionar filho</button></td>' +
+      '<td colspan="2"><button type="button" onclick="adicionarFilho(\'' + nome.nome + '\')">Adicionar filho</button></td>' +
     '</tr>' +
   '</tbody>';
 }
 
+function criaFilhos(filhos){
+  var tbfilhos = '';
+
+  filhos.forEach(filho => {
+    tbfilhos += '<tr class="filho">' +
+    '<td class="nome">' + filho + '</td>' +
+    '<td><button type="button">Remover filho</button></td>' +
+  '</tr>';
+  });
+
+  return tbfilhos;
+}
+
 function adicionarFilho(nome) {
-  const elementoNome = window.document.getElementById(nome);
-  const nomeFilho = window.prompt('Informe o nome', '');
+  var elementoNome = window.document.getElementById(nome);
+  var nomeFilho = window.prompt('Informe o nome', '');
 
   if(nomeFilho != '' && nomeFilho != ' '){
-    const div = elementoNome.getElementsByClassName('adicionarFilho')[0];
+    var div = elementoNome.getElementsByClassName('adicionarFilho')[0];
     div.insertAdjacentHTML('beforebegin',
     '<tr class="filho">' +
       '<td class="nome">' + nomeFilho + '</td>' +
