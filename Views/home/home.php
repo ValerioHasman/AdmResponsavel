@@ -6,8 +6,8 @@
 <br />
 <br />
 <label for="nome">Nome</label>
-<input type="text" name="pessoa" id="nome">
-<button type="button">Incluir</button>
+<input type="text" id="nomeNovo" />
+<button type="button" onclick="novaPessoa()">Incluir</button>
 <br />
 <br />
 <div style="display: inline-block;">
