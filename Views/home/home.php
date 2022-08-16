@@ -1,8 +1,5 @@
 <button type="button">Gravar</button>
 <button type="button">Ler</button>
-<button type="button">Remover</button>
-<button type="button">Remover filho</button>
-<button type="button">Adicionar filho</button>
 <br />
 <br />
 <label for="nome">Nome</label>
