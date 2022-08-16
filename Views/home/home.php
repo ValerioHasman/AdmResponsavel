@@ -1,5 +1,6 @@
 <button type="button">Gravar</button>
 <button type="button">Ler</button>
+<a target="_blank" href="https://github.com/ValerioHasman/TurimRTE/">GitHub do projeto</a>
 <br />
 <br />
 <label for="nome">Nome</label>
