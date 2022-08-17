@@ -2,7 +2,10 @@ var txtjson = document.getElementById('json');
 var tabela = document.getElementById('tabela');
 var dados;
 
-fetch(document.baseURI + 'home/json',
+ler();
+
+function ler(){
+  fetch(document.baseURI + 'home/json',
   {
     method: 'GET',
     headers: {
@@ -15,6 +18,7 @@ fetch(document.baseURI + 'home/json',
   })
   .catch(err => console.log(err))
 ;
+}
 
 function reCriarTabela(){
   tabela.innerHTML =
@@ -123,4 +127,17 @@ function atualiza(){
 
 function atualizaTxtArea(){
   txtjson.innerHTML = (JSON.stringify(dados, null, 2));
+}
+
+function gravar() {
+  fetch(document.baseURI + 'home/gravar',
+    {
+      method: 'POST',
+      body: JSON.stringify(dados),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then(resp => resp.json())
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
 }

@@ -1,6 +1,6 @@
-<button type="button">Gravar</button>
-<button type="button">Ler</button>
-<a target="_blank" href="https://github.com/ValerioHasman/TurimRTE/">GitHub do projeto</a>
+<button type="button" onclick="gravar()">Gravar</button>
+<button type="button" onclick="ler()">Ler</button>
+<a target="_blank" href="https://github.com/ValerioHasman/TurimRTE">GitHub do projeto</a>
 <br />
 <br />
 <label for="nome">Nome</label>
@@ -19,6 +19,6 @@
     </table>
   </div>
   <div class="dados">
-    <textarea id="json" cols="100" rows="40"></textarea>
+    <textarea readonly id="json" cols="100" rows="40"></textarea>
   </div>
 </div>
