@@ -127,6 +127,7 @@ function atualiza(){
 
 function atualizaTxtArea(){
   txtjson.innerHTML = (JSON.stringify(dados, null, 2));
+  txtjson.value = (JSON.stringify(dados, null, 2));
 }
 
 function gravar() {
