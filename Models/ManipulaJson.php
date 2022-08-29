@@ -2,8 +2,6 @@
 
 namespace Models;
 
-use PDO;
-
 abstract class ManipulaJson
 {
 
@@ -13,8 +11,8 @@ abstract class ManipulaJson
 
   public static function criaJson(): array
   {
-    $pessoas = Pessoa::pegarPessoas();
-    $filhos = Filho::pegarPessoas();
+    $pessoas = Pessoas::pegarPessoas();
+    $filhos = Filhos::pegarPessoas();
 
     foreach ($pessoas['pessoas'] as $pessoa => $pes) {
       $pessoas['pessoas'][$pessoa]['filhos'] = [];
@@ -27,22 +25,5 @@ abstract class ManipulaJson
     }
 
     return $pessoas;
-  }
-
-  public static function grava(): void
-  {
-
-    $jonson = json_decode(file_get_contents('php://input'), true) ?? false;
-
-    if ($jonson != false) {
-      Pessoa::apaga();
-      foreach ($jonson["pessoas"] as $pessoa) {
-        Pessoa::insere($pessoa['nome']);
-        $id = Pessoa::maiorId();
-        foreach ($pessoa['filhos'] as $filho) {
-          Filho::insere($filho, $id);
-        }
-      }
-    }
   }
 }

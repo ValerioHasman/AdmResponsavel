@@ -4,6 +4,7 @@ namespace Controller;
 
 use Core\Controller;
 use Models\ManipulaJson;
+use Models\ProcessaJson;
 
 class HomeController extends Controller
 {
@@ -19,11 +20,10 @@ class HomeController extends Controller
         echo json_encode(ManipulaJson::criaJson());
     }
 
-    public function gravar()
+    public function gravarObj(): void
     {
-        ManipulaJson::grava();
-        header('Location: ' . $GLOBALS['base']);
-        exit;
+        ProcessaJson::grava();
+        $this->index();
     }
 
 }

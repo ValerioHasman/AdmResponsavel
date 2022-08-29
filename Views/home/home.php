@@ -1,4 +1,4 @@
-<button type="button" onclick="gravar()">Gravar</button>
+<button type="button" onclick="gravarObj()">Gravar</button>
 <button type="button" onclick="ler()">Ler</button>
 <a target="_blank" href="https://github.com/ValerioHasman/TurimRTE">GitHub do projeto</a>
 <br />
