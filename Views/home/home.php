@@ -38,18 +38,18 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="gravadoModal" tabindex="-1" aria-labelledby="gravadoModalLabel" aria-hidden="true">
+<div class="modal fade" id="refilModal" tabindex="-1" aria-labelledby="refilModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="gravadoModalLabel">Gravado</h1>
+        <h1 class="modal-title fs-5" id="refilModalLabel"></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Gravado com sucesso!</p>
+        <p></p>
       </div>
       <div class="modal-footer">
-        <button id="btnOkGravado" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
       </div>
     </div>
   </div>
