@@ -1,143 +1,76 @@
-var txtjson = document.getElementById('json');
-var tabela = document.getElementById('tabela');
-var dados;
+import { Botoes } from './modelos/Botoes.js'
+import { Tabela } from './modelos/Tabela.js';
 
-ler();
+const txtjson = document.getElementById('json');
+const tabela = document.getElementById('tabela');
+const tb = new Tabela(tabela, txtjson);
+
+document.getElementById('ler').addEventListener('click',ler);
+document.getElementById('gravarObj').addEventListener('click',gravarObj);
+document.getElementById('formulario').addEventListener('submit',submitForm);
+document.getElementById('gravadoModal').addEventListener('shown.bs.modal', () => { document.getElementById('btnOkGravado').focus() })
+
+carregarTooltips(document)
+
+function carregarTooltips(parteDoDocumento){
+  const tooltipTriggerList = parteDoDocumento.querySelectorAll('[data-bs-toggle="tooltip"]');
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+  tooltipList.forEach((dica)=>{
+    dica._element.addEventListener('click',()=>{dica.hide()});
+  });
+}
+
+function submitForm(e){
+  e.preventDefault();
+  tb.novaPessoa(this.querySelector('input#nomeNovo').value);
+  this.querySelector('input').value = '';
+}
+
+function mensagemDeGravado(){
+
+  (new bootstrap.Modal('#gravadoModal')).show();
+
+  return "Gravado com sucesso!";
+}
+
+function gravarObj() {
+  const botao = new Botoes(this);
+  botao.desabilitado = true;
+
+  fetch(document.baseURI + 'home/gravarObj',
+    {
+      method: 'POST',
+      body: JSON.stringify(tb.dados),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then(resp => {
+      console.log( resp.status == 200 ? mensagemDeGravado() : 'Erro!' );
+    })
+    .catch(err => console.log(err))
+    .finally(()=>{
+      botao.desabilitado = false;
+    });
+}
 
 function ler(){
+  const botao = new Botoes(this);
+  botao.desabilitado = true;
+
   fetch(document.baseURI + 'home/json',
   {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     }
-  }).then(resp => resp.json())
+  })
+  .then(resp => resp.json())
   .then(data => {
-    dados = data;
-    atualiza();
+    tb.dados = data;
+    tb.atualiza();
   })
   .catch(err => console.log(err))
-;
-}
-
-function reCriarTabela(){
-  tabela.innerHTML =
-  '<thead>' +
-    '<tr>' +
-      '<th colspan="2" scope="col">Pessas</th>' +
-    '</tr>' +
-  '</thead>';
-  criaPessoaNaTabela();
-}
-
-function criaPessoaNaTabela(){
-  var conta = 0;
-  dados.pessoas.forEach(pessoa => {
-    tabela.innerHTML +=
-    '<tbody id="' + pessoa.nome + '">' +
-      '<tr class="pessoa">' +
-        '<td>' + pessoa.nome + '</td>' +
-        '<td><button type="button" ' +
-        'onclick="deletePessoa(' + conta + ')"' +
-        '>Remover</button></td>' +
-      '</tr>' +
-      criaFilhosNaTabela(pessoa.filhos, conta) +
-      '<tr class="adicionarFilho">' +
-        '<td colspan="2"><button type="button" onclick="adicionarFilho(\'' +
-        pessoa.nome +
-        '\')">Adicionar filho</button></td>' +
-      '</tr>' +
-    '</tbody>';
-    conta++;
+  .finally(()=>{
+    botao.desabilitado = false;
   });
-}
-
-function criaFilhosNaTabela(filhos, idp){
-  var tbfilhos = '';
-  var idf = 0;
-
-  filhos.forEach(filho => {
-    tbfilhos += '<tr class="filho">' +
-    '<td class="nome">' + filho + '</td>' +
-    '<td><button type="button"'+
-    'onclick="deleteFilho('+ idp +', ' + idf + ')"'+
-    '>Remover filho</button></td>' +
-    '</tr>';
-    idf++;
-  });
-
-  return tbfilhos;
-}
-
-function adicionarFilho(nome) {
-  var nomeFilho = window.prompt('Informe o nome', '');
-
-  if(naoEhVazio(nomeFilho)){
-
-    let conte = 0;
-    dados.pessoas.forEach(pessoa => {
-      if(pessoa.nome == nome){
-        dados.pessoas[conte].filhos.push(nomeFilho)
-      }
-      conte++;
-    });
-    atualiza();
-  }
-}
-
-function novaPessoa(){
-
-  nomeNovo = document.getElementById('nomeNovo').value
-
-  if(naoEhVazio(nomeNovo)){
-    dados.pessoas.push(
-      objetoPessoa(nomeNovo)
-    );
-    atualiza();
-  }
-}
-
-function naoEhVazio(valor){
-  if(valor != '' & valor != ' ' & valor != null & typeof valor == 'string'){
-    return true;
-  }
-  return false;
-}
-
-function objetoPessoa(nome){
-  return {nome: nome,
-          filhos: []
-  }
-}
-
-function deleteFilho(idp, idf){
-  dados.pessoas[idp].filhos.splice(idf,1);
-  atualiza();
-}
-
-function deletePessoa(idp) {
-  dados.pessoas.splice(idp,1);
-  atualiza();
-}
-
-function atualiza(){
-  atualizaTxtArea();
-  reCriarTabela();
-}
-
-function atualizaTxtArea(){
-  txtjson.value = (JSON.stringify(dados, null, 2));
-}
-
-function gravarObj() {
-  fetch(document.baseURI + 'home/gravarObj',
-    {
-      method: 'POST',
-      body: JSON.stringify(dados),
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    }).then(resp => resp.json())
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
 }

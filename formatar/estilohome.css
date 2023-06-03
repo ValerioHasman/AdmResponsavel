@@ -1,33 +1,9 @@
-table {
-  min-width: 300px;
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
+
+:root {
+  --bs-font-sans-serif: 'Nunito', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-td, th {
-  padding: 0.2rem;
-}
-
-thead th {
-  background-color: #ccc;
-}
-
-.pessoa td {
-  background-color: #ddd;
-}
-
-.filho td{
-  background-color: #eee;
-}
-
-.filho .nome{
-  padding-left: 1rem;
-}
-
-.adicionarFilho td {
-  text-align: center;
-  vertical-align: sub;
-  height: 2rem;
-}
-
-.dados {
-  float: left;
+.filho .nome {
+  text-indent: 1ch;
 }

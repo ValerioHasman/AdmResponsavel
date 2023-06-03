@@ -1,0 +1,20 @@
+{
+  "name": "lista-pessoas",
+  "version": "1.0.0",
+  "description": "Para funcionar:",
+  "main": "./roteiro/roteiro.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ValerioHasman/TurimRTE.git"
+  },
+  "author": "Valério Luz Hasman Junior",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ValerioHasman/TurimRTE/issues"
+  },
+  "homepage": "https://github.com/ValerioHasman/TurimRTE#readme",
+  "type": "module"
+}
