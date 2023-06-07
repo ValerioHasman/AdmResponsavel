@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="formatar/estilohome.css" />
     <link rel="shortcut icon" href="midias/ICONE.ico" type="image/x-icon" />
     <script type="module" src="roteiro/roteiro.js"></script>
-    <title>TurimRTE</title>
+    <title>Administração de Responsáveis</title>
 </head>
 
 <body>

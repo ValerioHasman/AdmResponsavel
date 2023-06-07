@@ -9,7 +9,7 @@ class Filhos extends Pessoas
 
   public function insereNoBanco()
   {
-    $sql = Conexao::getConexao()->prepare('INSERT INTO `TESTE_RTE`.`FILHO` (`ID`, `PESSOA_ID`, `NOME`) VALUES
+    $sql = Conexao::getConexao()->prepare('INSERT INTO `ADMINISTRACAO`.`FILHO` (`ID`, `PESSOA_ID`, `NOME`) VALUES
     (NULL, :id, :nome)');
     $sql->bindValue(':id', $this->id);
     $sql->bindValue(':nome', $this->nome);

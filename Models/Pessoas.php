@@ -30,7 +30,7 @@ class Pessoas
   public function insereNoBanco()
   {
     $sqlm = Conexao::getConexao();
-    $sql = $sqlm->prepare('INSERT INTO `TESTE_RTE`.`PESSOA` (`ID`, `NOME`) VALUES (NULL, :nome)');
+    $sql = $sqlm->prepare('INSERT INTO `ADMINISTRACAO`.`PESSOA` (`ID`, `NOME`) VALUES (NULL, :nome)');
     $sql->bindValue(':nome', $this->nome);
     $sql->execute();
     $this->id = $sqlm->lastInsertId();
