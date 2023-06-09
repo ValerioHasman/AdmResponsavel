@@ -24,6 +24,7 @@ export class Tabela {
     }
   }
   set dados(valor){
+    console.log(valor)
     this.#dados = Object(valor);
   }
 

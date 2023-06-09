@@ -3,11 +3,15 @@ export class Modais{
   #modal = Object();
   #titulo = String();
   #mensagem = String();
+  #funcao = Function();
 
-  constructor(modal, titulo, mensagem){
+  constructor(modal, titulo, mensagem, funcao = this.funcao){
     this.modal = modal;
     this.titulo = titulo;
     this.mensagem = mensagem;
+    this.funcao = funcao;
+
+    this.modal.addEventListener('hide.bs.modal', this.funcao);
   }
 
   set modal(valor){
@@ -19,6 +23,15 @@ export class Modais{
   set mensagem(valor){
     this.#mensagem = String(valor);
   }
+  set funcao(valor){
+    if(typeof Function() != typeof valor){
+      throw new Error('Função inválida');
+    }
+    this.#funcao = ()=>{
+      valor();
+      this.modal.removeEventListener('hide.bs.modal', this.funcao);
+    };
+  }
   get modal(){
     return Object(this.#modal);
   }
@@ -27,6 +40,9 @@ export class Modais{
   }
   get mensagem(){
     return String(this.#mensagem);
+  }
+  get funcao(){
+    return this.#funcao;
   }
   
   exibe(){
