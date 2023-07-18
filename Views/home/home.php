@@ -1,13 +1,13 @@
 <div class="bg-success-subtle py-2 container-fluid">
   <div class="row">
     <div class="px-2 col d-grid gap-2">
-      <button id="gravarObj" type="button" class="btn btn-warning bg-gradient" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Gravar dados"><i class="bi bi-upload"></i></button>
+      <button id="gravarObj" type="button" class="btn btn-warning bg-gradient" data-bs-toggle="tooltip" data-bs-delay='{"show":1000,"hide":0}' data-bs-placement="bottom" data-bs-title="Gravar dados"><i class="bi bi-upload"></i></button>
     </div>
     <div class="px-2 col d-grid gap-2">
-      <button id="ler" type="button" class="btn btn-success bg-gradient" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Carregar dados"><i class="bi bi-download"></i></button>
+      <button id="ler" type="button" class="btn btn-success bg-gradient" data-bs-toggle="tooltip" data-bs-delay='{"show":1000,"hide":0}' data-bs-placement="bottom" data-bs-title="Carregar dados"><i class="bi bi-download"></i></button>
     </div>
     <div class="px-2 col col-sm-7 col-lg-9">
-      <a target="_blank" class="btn btn-link" href="https://github.com/ValerioHasman/TurimRTE" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="GitHub Do projeto"><i class="bi bi-github"></i></a>
+      <a target="_blank" class="btn btn-link" href="https://github.com/ValerioHasman/TurimRTE" data-bs-toggle="tooltip" data-bs-delay='{"show":1000,"hide":0}' data-bs-placement="bottom" data-bs-title="GitHub Do projeto"><i class="bi bi-github"></i></a>
     </div>
   </div>  
 </div>
@@ -15,7 +15,7 @@
   <form id="formulario" class="row">
     <div class="px-2 col-auto"><label class="col-form-label" for="nomeNovo">Nome:</label></div>
     <div class="px-2 col-sm-auto col"><input required class="form-control" type="text" id="nomeNovo" /></div>
-    <div class="px-2 col-auto"><button class="btn btn-primary bg-gradient px-4" type="submit" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Inserir responsável"><i class="bi bi-plus-lg"></i></button></div>
+    <div class="px-2 col-auto"><button class="btn btn-primary bg-gradient px-4" type="submit" data-bs-toggle="tooltip" data-bs-delay='{"show":1000,"hide":0}' data-bs-placement="bottom" data-bs-title="Inserir responsável"><i class="bi bi-plus-lg"></i></button></div>
   </form>
 </div>
 <br />
@@ -49,7 +49,7 @@
         <p></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>

@@ -1,7 +1,7 @@
-import { Botoes } from "./Botoes.js";
-import { Modais } from "./Modais.js";
+import Botoes from "./Botoes.js";
+import Modais from "./Modais.js";
 
-export class APIs {
+export default class APIs {
   static ler(btn, tb){
     const botao = new Botoes(btn);
     botao.desabilitado = true;
@@ -39,13 +39,15 @@ export class APIs {
           new Modais(
             refilModal,
             "Gravado",
-            "Gravado com sucesso!!"
+            "Gravado com sucesso!!",
+            ()=>{btn.focus()}
           ).exibe();
         } else {
           new Modais(
             refilModal,
             "Não gravado",
-            "Erro ao gravar!"
+            "Erro ao gravar!",
+            ()=>{btn.focus()}
           ).exibe();
         }
       })

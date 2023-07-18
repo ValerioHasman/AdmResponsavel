@@ -1,4 +1,4 @@
-export class Botoes {
+export default class Botoes {
   #texto = String();
   #botao = Object();
   #desabilitado = Boolean();

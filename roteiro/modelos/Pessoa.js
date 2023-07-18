@@ -1,4 +1,12 @@
-export class Pessoa {
+export default class Pessoa {
+
+  /**
+   * Não pode começar com espaço;
+   * Não pode ter mais de um espaço entre palavras;
+   * Não pode conter mais que três letras iguais consecutivas; X
+   * A primeira parte do nome deve ter pelo menos 3 caracteres;
+   */
+
   #nome = String();
 
   constructor(){}
@@ -6,17 +14,17 @@ export class Pessoa {
   set nome(valor){
     let nome = String(valor);
     nome = this.apenasLetras(nome);
-    this.#nome = nome;
     this.nomeTemTamanho(nome);
     this.primeiroNomeTemTamanho(nome);
     this.#nome = nome;
   }
+
   get nome(){
     return String(this.#nome);
   }
 
   apenasLetras(nome){
-    const regex = /[^\p{L}\s]/gu;
+    const regex = /[^\p{L}\s]|\s{2,}/gu;
     const nada = '';
     nome = nome.replace(regex, nada);
     nome = nome.trim();
@@ -25,7 +33,7 @@ export class Pessoa {
 
   nomeTemTamanho(nome){
     if(nome.length < 3){
-      throw new Error('O nome foi tratado, mas é menor que três letras.');
+      throw new Error('O nome não pode ter menos que três letras.');
     }
   }
 

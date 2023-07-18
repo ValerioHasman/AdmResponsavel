@@ -1,21 +1,26 @@
-export class Modais{
+export default class Modais{
 
   #modal = Object();
   #titulo = String();
   #mensagem = String();
   #funcao = Function();
+  #funcaoStart = Function();
+  #bootstrapModal = Object();
 
-  constructor(modal, titulo, mensagem, funcao = this.funcao){
+  constructor(modal, titulo, mensagem, funcao = Function(), funcaoStart = Function()){
     this.modal = modal;
     this.titulo = titulo;
     this.mensagem = mensagem;
     this.funcao = funcao;
+    this.funcaoStart = funcaoStart;
 
     this.modal.addEventListener('hide.bs.modal', this.funcao);
+    this.modal.addEventListener('shown.bs.modal', this.funcaoStart);
   }
 
   set modal(valor){
     this.#modal = Object(valor);
+    this.#bootstrapModal = new bootstrap.Modal(this.modal);
   }
   set titulo(valor){
     this.#titulo = String(valor);
@@ -28,12 +33,23 @@ export class Modais{
       throw new Error('Função inválida');
     }
     this.#funcao = ()=>{
-      valor();
+      setTimeout(() => {
+        valor();
+      }, 100);
       this.modal.removeEventListener('hide.bs.modal', this.funcao);
     };
   }
+  set funcaoStart(valor){
+    if(typeof Function() != typeof valor){
+      throw new Error('Função inválida');
+    }
+    this.#funcaoStart = ()=>{
+      valor();
+      this.modal.removeEventListener('shown.bs.modal', this.funcaoStart);
+    };
+  }
   get modal(){
-    return Object(this.#modal);
+    return this.#modal;
   }
   get titulo(){
     return String(this.#titulo);
@@ -44,11 +60,18 @@ export class Modais{
   get funcao(){
     return this.#funcao;
   }
+  get funcaoStart(){
+    return this.#funcaoStart;
+  }
   
   exibe(){
-    (new bootstrap.Modal(this.modal)).show();
-    this.modal.querySelector('h1').innerText = this.titulo;
-    this.modal.querySelector('p').innerText = this.mensagem;
+    this.#bootstrapModal.show();
+    this.modal.querySelector('h1').innerHTML = this.titulo;
+    this.modal.querySelector('p').innerHTML = this.mensagem;
+  }
+
+  fecha(){
+    this.#bootstrapModal.hide();
   }
 
 }
