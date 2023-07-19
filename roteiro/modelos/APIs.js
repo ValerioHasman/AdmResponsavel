@@ -23,7 +23,7 @@ export default class APIs {
       botao.desabilitado = false;
     });
   }
-  static gravarObj(btn, tb, refilModal) {
+  static gravarObj(btn, tb, refilModal, toastBootstrap) {
     const botao = new Botoes(btn);
     botao.desabilitado = true;
   
@@ -36,12 +36,7 @@ export default class APIs {
         }
       }).then(resp => {
         if(resp.status == 200){
-          new Modais(
-            refilModal,
-            "Gravado",
-            "Gravado com sucesso!!",
-            ()=>{btn.focus()}
-          ).exibe();
+          toastBootstrap.show();
         } else {
           new Modais(
             refilModal,

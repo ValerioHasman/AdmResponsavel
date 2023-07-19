@@ -1,3 +1,4 @@
+import Formulario from "./Formulario.js";
 import Modais from "./Modais.js";
 import Pessoa from "./Pessoa.js";
 
@@ -138,7 +139,10 @@ export default class Tabela2 {
     const form = 
     '<form id="novoFilho" class="row">' +
       '<div class="pe-2 col-auto"><label class="col-form-label" for="nomeFilho">Nome:</label></div>' +
-      '<div class="ps-2 col"><input required class="form-control" type="text" id="nomeFilho" /></div>' +
+      '<div class="ps-2 col">' +
+        '<input required class="form-control" type="text" id="nomeFilho" />' +
+        '<div id="retornoValida" class="d-none invalid-feedback"></div>' +
+      '</div>' +
       '<div class="d-grid gap-2 mt-3">' +
         '<button class="btn btn-primary" type="submit" type="button">Adicionar</button>' +
       '</div>' +
@@ -153,27 +157,29 @@ export default class Tabela2 {
     const input = refilModal.querySelector('#nomeFilho');
     input.focus();
     input.oninput = ()=>{
-      input.value = input.value.replace(/[^\p{L}\s]/gu,'');
-      input.value = input.value.replace(/\s{2,}/gu,' ');
+      input.value = Pessoa.tratarEspacosELetras(input.value);
     };
 
     const formNode = refilModal.querySelector('#novoFilho');
     formNode.onsubmit = (e) => {
       e.preventDefault();
-      modal.fecha();
+
+      const input = e.target[0];
+      console.log({e})
+      const divValida = e.target.querySelector('#retornoValida');
+
       const pessoa = new Pessoa();
 
-      console.log(this.dados)
-      console.log(this.dados.pessoas[idPessoa])
-      console.log(idPessoa)
-
       try {
-        pessoa.nome = e.target[0].value;
+        pessoa.nome = input.value;
         this.dados.pessoas[idPessoa].filhos.push(pessoa.nome);
         this.atualiza();
+        modal.fecha();
       } catch (err) {
-        new Modais(refilModal, '<i class="bi bi-exclamation-octagon"></i> Nome inválido', err.message).exibe();
-      }
+        input.classList.add("is-invalid");
+        divValida.classList.remove('d-none');
+        divValida.innerHTML = `<i class="bi bi-exclamation-octagon"></i> Nome inválido, ${err.message}`;
+      } 
     }
   }
 

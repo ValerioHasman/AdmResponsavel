@@ -14,7 +14,7 @@ export default class Modais{
     this.funcao = funcao;
     this.funcaoStart = funcaoStart;
 
-    this.modal.addEventListener('hide.bs.modal', this.funcao);
+    this.modal.addEventListener('hidden.bs.modal', this.funcao);
     this.modal.addEventListener('shown.bs.modal', this.funcaoStart);
   }
 
@@ -33,10 +33,8 @@ export default class Modais{
       throw new Error('Função inválida');
     }
     this.#funcao = ()=>{
-      setTimeout(() => {
-        valor();
-      }, 100);
-      this.modal.removeEventListener('hide.bs.modal', this.funcao);
+      valor();
+      this.modal.removeEventListener('hidden.bs.modal', this.funcao);
     };
   }
   set funcaoStart(valor){
