@@ -1,5 +1,6 @@
 import Botoes from "./Botoes.js";
 import Modais from "./Modais.js";
+import Notificacoes from "./Notificacoes.js";
 
 export default class APIs {
   static ler(btn, tb){
@@ -23,7 +24,7 @@ export default class APIs {
       botao.desabilitado = false;
     });
   }
-  static gravarObj(btn, tb, refilModal, toastBootstrap) {
+  static gravarObj(btn, tb, refilModal, toastContainer) {
     const botao = new Botoes(btn);
     botao.desabilitado = true;
   
@@ -36,7 +37,7 @@ export default class APIs {
         }
       }).then(resp => {
         if(resp.status == 200){
-          toastBootstrap.show();
+          new Notificacoes(toastContainer, 'success', 'Gravado com sucesso!').exibe();
         } else {
           new Modais(
             refilModal,
@@ -46,7 +47,9 @@ export default class APIs {
           ).exibe();
         }
       })
-      .catch(err => console.log(err))
+      .catch((err) => {
+        new Notificacoes(toastContainer, 'danger', `Erro: ${err.message}`).exibe();
+      })
       .finally(()=>{
         botao.desabilitado = false;
       });

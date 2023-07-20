@@ -14,8 +14,8 @@
 <div class="bg-success-subtle py-2 container-fluid">
   <form id="formulario" class="row">
     <div class="px-2 col-auto"><label class="col-form-label" for="nomeNovo">Nome:</label></div>
-    <div class="px-2 col-sm-auto col"><input required class="form-control" type="text" id="nomeNovo" /></div>
-    <div class="px-2 col-auto"><button class="btn btn-primary bg-gradient px-4" type="submit" data-bs-toggle="tooltip" data-bs-delay='{"show":1000,"hide":0}' data-bs-placement="bottom" data-bs-title="Inserir responsável"><i class="bi bi-plus-lg"></i></button></div>
+    <div class="px-2 col-md-auto col-md-5 col-lg-4 col"><input required class="form-control" type="text" id="nomeNovo" /></div>
+    <div class="px-2 col-auto"><button class="btn btn-primary bg-gradient px-sm-5" type="submit" data-bs-toggle="tooltip" data-bs-delay='{"show":1000,"hide":0}' data-bs-placement="bottom" data-bs-title="Inserir responsável"><i class="bi bi-plus-lg"></i></button></div>
   </form>
 </div>
 <br />
@@ -56,13 +56,13 @@
 </div>
 
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
-  <div id="liveToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+  <!-- <div id="liveToast" class="toast align-items-center text-bg-success border-2" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
       <div class="toast-body">
         Gravado com sucesso!
       </div>
       <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
-  </div>
+  </div> -->
 </div>
 

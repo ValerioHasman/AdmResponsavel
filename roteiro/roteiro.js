@@ -9,9 +9,7 @@ const txtjson = document.getElementById('json');
 const tabela = document.getElementById('tabela');
 const tb = new Tabela2(tabela, txtjson);
 const refilModal = document.getElementById('refilModal');
-const toastLiveExample = document.getElementById('liveToast')
-const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
-
+const toastContainer = document.querySelector('.toast-container');
 
 document.getElementById('ler').addEventListener('click',ler);
 document.getElementById('gravarObj').addEventListener('click',gravarObj);
@@ -28,7 +26,7 @@ function ler(){
 }
 
 function gravarObj(){
-  APIs.gravarObj(this, tb, refilModal, toastBootstrap)
+  APIs.gravarObj(this, tb, refilModal, toastContainer)
 }
 
 function submitForm(e){
