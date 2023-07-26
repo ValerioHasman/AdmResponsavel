@@ -2,7 +2,7 @@
 
 session_start();
 
-spl_autoload_register();
+require_once("./autoload.php");
 
 use Core\Core;
 
