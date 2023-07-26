@@ -13,7 +13,7 @@ export default class Formulario {
       this.#formulario = Object(valor);
       this.#target = valor.target;
     } else {
-      console.error('Tipo esperado FORM, de um submit!');
+      throw new TypeError('Tipo esperado FORM, de um submit!');
     }
   }
 

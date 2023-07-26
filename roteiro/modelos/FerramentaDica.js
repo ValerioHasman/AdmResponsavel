@@ -1,3 +1,5 @@
+import * as bootstrap from 'bootstrap';
+
 export default class FerramentaDica{
   static carregarDicas(parteDoDocumento){
     const tooltipTriggerList = parteDoDocumento.querySelectorAll('[data-bs-toggle="tooltip"]');

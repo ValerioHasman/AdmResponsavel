@@ -1,5 +1,4 @@
 import Botoes from "./Botoes.js";
-import Modais from "./Modais.js";
 import Notificacoes from "./Notificacoes.js";
 
 export default class APIs {
@@ -18,13 +17,16 @@ export default class APIs {
     .then(data => {
       tb.dados = data;
       tb.atualiza();
+      new Notificacoes('primary', 'Lido com sucesso!').exibe();
     })
-    .catch(err => console.log(err))
+    .catch((err) => {
+      new Notificacoes('danger', `Erro ao ler: ${err.message}!`).exibe();
+    })
     .finally(()=>{
       botao.desabilitado = false;
     });
   }
-  static gravarObj(btn, tb, refilModal, toastContainer) {
+  static gravarObj(btn, tb) {
     const botao = new Botoes(btn);
     botao.desabilitado = true;
   
@@ -37,18 +39,13 @@ export default class APIs {
         }
       }).then(resp => {
         if(resp.status == 200){
-          new Notificacoes(toastContainer, 'success', 'Gravado com sucesso!').exibe();
+          new Notificacoes('success', 'Gravado com sucesso!').exibe();
         } else {
-          new Modais(
-            refilModal,
-            "Não gravado",
-            "Erro ao gravar!",
-            ()=>{btn.focus()}
-          ).exibe();
+          new Notificacoes('danger', `Erro: Não foi possível gravar`).exibe();
         }
       })
       .catch((err) => {
-        new Notificacoes(toastContainer, 'danger', `Erro: ${err.message}`).exibe();
+        new Notificacoes('danger', `Erro ao gravar: ${err.message}`).exibe();
       })
       .finally(()=>{
         botao.desabilitado = false;

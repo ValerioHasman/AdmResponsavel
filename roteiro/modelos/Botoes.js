@@ -12,7 +12,7 @@ export default class Botoes {
     if (valor.tagName == 'BUTTON'){
       this.#botao = Object(valor);
     } else {
-      console.error('Tipo esperado BUTTON!');
+      throw new TypeError('Tipo esperado BUTTON!');
     }
   }
   get botao(){

@@ -17,14 +17,14 @@ export default class Tabela2 {
     if (valor.tagName == 'TABLE'){
       this.#tabela = Object(valor);
     } else {
-      console.error('Tipo esperado TABLE!');
+      throw new TypeError('Tipo esperado TABLE!');
     }
   }
   set txtjson(valor){
     if (valor.tagName == 'TEXTAREA'){
       this.#txtjson = Object(valor);
     } else {
-      console.error('Tipo esperado TEXTAREA!');
+      throw new TypeError('Tipo esperado TEXTAREA!');
     }
   }
   set dados(valor){
@@ -137,7 +137,7 @@ export default class Tabela2 {
   modalAdicionarFilho(idPessoa){
 
     const form = 
-    '<form id="novoFilho" class="row">' +
+    '<form class="row">' +
       '<div class="pe-2 col-auto"><label class="col-form-label" for="nomeFilho">Nome:</label></div>' +
       '<div class="ps-2 col">' +
         '<input required class="form-control" type="text" id="nomeFilho" />' +
@@ -148,24 +148,23 @@ export default class Tabela2 {
       '</div>' +
     '</form>';
 
-    const modal = new Modais(refilModal, 'Novo filho', form, undefined, ()=>{this.trataForm(modal, idPessoa)});
+    const modal = new Modais('Novo filho', form, undefined, ()=>{this.trataForm(modal, idPessoa)});
     modal.exibe()
 
   }
 
   trataForm(modal, idPessoa){
-    const input = refilModal.querySelector('#nomeFilho');
+    const input = modal.modal.querySelector('input');
     input.focus();
     input.oninput = ()=>{
       input.value = Pessoa.tratarEspacosELetras(input.value);
     };
 
-    const formNode = refilModal.querySelector('#novoFilho');
+    const formNode = modal.modal.querySelector('form');
     formNode.onsubmit = (e) => {
       e.preventDefault();
 
       const input = e.target[0];
-      console.log({e})
       const divValida = e.target.querySelector('#retornoValida');
 
       const pessoa = new Pessoa();

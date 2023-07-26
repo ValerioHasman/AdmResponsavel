@@ -8,25 +8,22 @@ import Tabela2 from './modelos/Tabela2.js';
 const txtjson = document.getElementById('json');
 const tabela = document.getElementById('tabela');
 const tb = new Tabela2(tabela, txtjson);
-const refilModal = document.getElementById('refilModal');
-const toastContainer = document.querySelector('.toast-container');
 
-document.getElementById('ler').addEventListener('click',ler);
-document.getElementById('gravarObj').addEventListener('click',gravarObj);
-document.getElementById('formulario').addEventListener('submit',submitForm);
+document.getElementById('ler').onclick = ler;
+document.getElementById('gravarObj').onclick = gravarObj;
+document.getElementById('formulario').onsubmit = submitForm;
 document.getElementById('nomeNovo').oninput = (e)=>{ 
-  e.target.value = Pessoa.tratarEspacosELetras(input.value);
+  e.target.value = Pessoa.tratarEspacosELetras(e.target.value);
 }
-refilModal.addEventListener('shown.bs.modal', () => { refilModal.querySelector('button.btn-secondary').focus() });
 
 FerramentaDica.carregarDicas(document);
 
 function ler(){
-  APIs.ler(this, tb)
+  APIs.ler(this, tb);
 }
 
 function gravarObj(){
-  APIs.gravarObj(this, tb, refilModal, toastContainer)
+  APIs.gravarObj(this, tb);
 }
 
 function submitForm(e){
@@ -38,7 +35,6 @@ function submitForm(e){
   formulario.desabilitado = true;
 
   function focar(){
-    console.log("focado")
     formulario.desabilitado = false;
     input.focus();
   }
@@ -51,6 +47,6 @@ function submitForm(e){
     input.value = '';
     focar();
   } catch (err) {
-    new Modais(refilModal, '<i class="bi bi-exclamation-octagon"></i> Nome inválido', err.message, focar).exibe();
+    new Modais('<i class="bi bi-exclamation-octagon"></i> Nome inválido', err.message, focar).exibe();
   }
 }
