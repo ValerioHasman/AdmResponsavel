@@ -10,9 +10,7 @@
       <a target="_blank" class="btn btn-link" href="https://github.com/ValerioHasman/TurimRTE" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="GitHub Do projeto"><i class="bi bi-github"></i></a>
     </div>
   </div>  
-</div>
-<div class="bg-success-subtle py-2 container-fluid">
-  <form id="formulario" class="row">
+  <form id="formulario" class="row mt-2">
     <div class="px-2 col-auto"><label class="col-form-label" for="nomeNovo">Nome:</label></div>
     <div class="px-2 col-md-auto col-md-5 col-lg-4 col"><input required class="form-control" type="text" id="nomeNovo" /></div>
     <div class="px-2 col-auto"><button class="btn btn-primary bg-gradient px-sm-5" type="submit" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Inserir responsável"><i class="bi bi-plus-lg"></i></button></div>
